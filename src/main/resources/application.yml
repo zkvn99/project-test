@@ -1,0 +1,53 @@
+server:
+  address: 0.0.0.0
+  port: 8012
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test
+    username: kirke
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      pool-name: HikariCP
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    enable-lazy-loading: true
+  mongodb:
+    uri: mongodb://localhost:27017/test
+    username: kirke
+    password: 1234
+    authentication-database: admin
+    database: test
+  mail:
+    host: smtp.example.com
+    port: 587
+    username: your_email@example.com
+    password: your_email_password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  security:
+    user:
+      name: user
+      password: password
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: your_redis_password
+      timeout: 2000
+
