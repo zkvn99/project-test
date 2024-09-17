@@ -1,0 +1,78 @@
+/* 기본 스타일 설정 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+header {
+    background-color: #f8f8f8;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.menu li {
+    margin-right: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: #007bff;
+}
+
+.logo {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.login a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .menu {
+        display: none; /* 작은 화면에서 메뉴 숨기기 */
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .login {
+        font-size: 14px;
+    }
+}
