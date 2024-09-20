@@ -2,7 +2,7 @@ package com.growth.everything.entity.user;
 
 import jakarta.persistence.*;
 import lombok.*;
-import com.growth.everything.dto.user.UserDto;
+import com.growth.everything.dto.user.UserDTO;
 
 @Entity
 @Setter
@@ -36,15 +36,15 @@ public class UserEntity {
     @Column
     private String userAddress;
 
-    public static UserEntity toUserEntity(UserDto userDto) {
-        UserEntity UserEntity = new UserEntity();
-        UserEntity.setId(userDto.getId());
-        UserEntity.setUserEmail(userDto.getUserEmail());
-        UserEntity.setUserPassword(userDto.getUserPassword());
-        UserEntity.setUserName(userDto.getUserName());
-        UserEntity.setUserNickname(userDto.getUserNickname());
-        UserEntity.setUserPhone(userDto.getUserPhone());
-        UserEntity.setUserAddress(userDto.getUserAddress());
-        return UserEntity;
+    public static UserEntity fromUserDTO(UserDTO userDTO) {
+        return new UserEntity(
+                userDTO.getId(),
+                userDTO.getUserEmail(),
+                userDTO.getUserPassword(),
+                userDTO.getUserName(),
+                userDTO.getUserNickname(),
+                userDTO.getUserPhone(),
+                userDTO.getUserAddress()
+        );
     }
 }
