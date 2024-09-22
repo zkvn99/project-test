@@ -1,10 +1,11 @@
 package com.growth.everything.service.user;
 
-import com.growth.everything.dto.user.UserDTO;
+import com.growth.everything.dto.user.UserLoginDTO;
+import com.growth.everything.dto.user.UserSessionDTO;
+import com.growth.everything.dto.user.UserSignupDTO;
 import com.growth.everything.entity.user.UserEntity;
 import com.growth.everything.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
@@ -15,18 +16,19 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
 
     @Override
-    public void signup(UserDTO userDTO) {
-        UserEntity userEntity = UserEntity.fromUserDTO(userDTO);
+    public void signup(UserSignupDTO userSignupDTO) {
+        UserEntity userEntity = UserEntity.fromUserDTO(userSignupDTO);
+        System.out.println(userEntity);
         userRepository.save(userEntity);
     }
 
     @Override
-    public UserDTO login(UserDTO userDTO) {
-        Optional<UserEntity> optionalUser = userRepository.getByEmail(userDTO.getUserEmail());
+    public UserSessionDTO login(UserLoginDTO userLoginDTO) {
+        Optional<UserEntity> optionalUser = userRepository.getByUserEmail(userLoginDTO.getUserEmail());
         if(optionalUser.isPresent()) {
             UserEntity userEntity = optionalUser.get();
-            if(userDTO.getUserPassword().equals(userEntity.getUserPassword())) {
-                UserDTO user = UserDTO.fromUserEntity(userEntity);
+            if(userLoginDTO.getUserPassword().equals(userEntity.getUserPassword())) {
+                UserSessionDTO user = UserSessionDTO.fromUserEntity(userEntity);
                 return user;
             } else {
                 return null;

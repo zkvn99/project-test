@@ -1,26 +1,29 @@
 package com.growth.everything.dto.user;
 
 import com.growth.everything.entity.user.UserEntity;
-import lombok.*;
+import lombok.Getter;
+import lombok.ToString;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
-public class UserDTO {
-    private Long id;
+public class UserSessionDTO {
     private String userEmail;
-    private String userPassword;
     private String userName;
     private String userNickname;
     private String userPhone;
     private String userAddress;
 
-    public static UserDTO fromUserEntity(UserEntity userEntity) {
-        return new UserDTO(
-                userEntity.getId(),
+    public UserSessionDTO(String userName, String userNickname, String userPhone, String userAddress, String userEmail) {
+        this.userEmail = userEmail;
+        this.userName = userName;
+        this.userNickname = userNickname;
+        this.userPhone = userPhone;
+        this.userAddress = userAddress;
+    }
+
+    public static UserSessionDTO fromUserEntity(UserEntity userEntity) {
+        return new UserSessionDTO(
                 userEntity.getUserEmail(),
-                userEntity.getUserPassword(),
                 userEntity.getUserName(),
                 userEntity.getUserNickname(),
                 userEntity.getUserPhone(),

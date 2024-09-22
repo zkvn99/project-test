@@ -2,10 +2,9 @@ package com.growth.everything.entity.user;
 
 import jakarta.persistence.*;
 import lombok.*;
-import com.growth.everything.dto.user.UserDTO;
+import com.growth.everything.dto.user.UserSignupDTO;
 
 @Entity
-@Setter
 @Getter
 @Builder
 @AllArgsConstructor
@@ -36,15 +35,14 @@ public class UserEntity {
     @Column
     private String userAddress;
 
-    public static UserEntity fromUserDTO(UserDTO userDTO) {
-        return new UserEntity(
-                userDTO.getId(),
-                userDTO.getUserEmail(),
-                userDTO.getUserPassword(),
-                userDTO.getUserName(),
-                userDTO.getUserNickname(),
-                userDTO.getUserPhone(),
-                userDTO.getUserAddress()
-        );
+    public static UserEntity fromUserDTO(UserSignupDTO userSignupDTO) {
+        return UserEntity.builder()
+                .userEmail(userSignupDTO.getUserEmail())
+                .userPassword(userSignupDTO.getUserPassword())
+                .userName(userSignupDTO.getUserName())
+                .userNickname(userSignupDTO.getUserNickname())
+                .userPhone(userSignupDTO.getUserPhone())
+                .userAddress(userSignupDTO.getUserAddress())
+                .build();
     }
 }

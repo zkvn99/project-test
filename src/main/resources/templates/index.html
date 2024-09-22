@@ -19,7 +19,12 @@
             <h1>로고</h1>
         </div>
         <div class="login">
-            <a href="user/login">로그인</a>
+            <div th:if="${!isLoggedIn}">
+                <a href="user/login">로그인</a>
+            </div>
+            <div th:if="${isLoggedIn}">
+                <a href="user/logout">로그아웃</button>
+            </div>
         </div>
     </nav>
 </header>

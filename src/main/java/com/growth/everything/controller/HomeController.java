@@ -1,5 +1,6 @@
 package com.growth.everything.controller;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,14 @@ public class HomeController {
                         @RequestParam(value = "perPagination", required = false, defaultValue = "5") int perPagination,
                         @RequestParam(value = "type", required = false, defaultValue = "n") String type,
                         @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+                        HttpSession session,
                         Model model) {
+        String email = (String) session.getAttribute("email");
+        if (email != null) {
+            model.addAttribute("isLoggedIn", true); // 로그인 상태
+        } else {
+            model.addAttribute("isLoggedIn", false); // 로그아웃 상태
+        }
         return "index";
     }
 }

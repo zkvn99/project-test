@@ -1,9 +1,11 @@
 package com.growth.everything.service.user;
 
-import com.growth.everything.dto.user.UserDTO;
+import com.growth.everything.dto.user.UserLoginDTO;
+import com.growth.everything.dto.user.UserSessionDTO;
+import com.growth.everything.dto.user.UserSignupDTO;
 
 public interface UserService {
-    void signup(UserDTO userDTO);
-    UserDTO login(UserDTO userDTO);
+    void signup(UserSignupDTO userSignupDTO);
+    UserSessionDTO login(UserLoginDTO userLoginDTO);
 
 }
